@@ -4,7 +4,7 @@ const GrabParam = ({params}: any) => {
   return (
     <>
       <div>Welcome</div>
-          <h1>Good morning, { params.id}</h1>
+          <h1>Hello User!, This is your id  { params.id}</h1>
     </>
   );
 }
