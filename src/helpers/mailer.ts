@@ -34,8 +34,8 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
       host: "smtp.ethereal.email",
       port: 587,
       auth: {
-        user: "loyce90@ethereal.email",
-        pass: "t4JvVMAJC2jhGFRTsn",
+        user: "ernestina.abbott53@ethereal.email",
+        pass: "AaZM2BbjbZ8EtRQRww",
       },
     });
 
@@ -47,7 +47,7 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
 
       html: `<p> Click <a href="${
         process.env.DOMAIN
-      }/verifyemail?token=${hashedToken}">here</a> to ${
+      }/verifyEmail?token=${hashedToken}">here</a> to ${
         emailType === "VERIFY" ? "Verify your email" : "Reset your email"
       } </p>`,
     });

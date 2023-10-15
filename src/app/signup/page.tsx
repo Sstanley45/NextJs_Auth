@@ -9,6 +9,7 @@ export default function page() {
   const router = useRouter();
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [user, setUser] = useState({
     name: "",
@@ -24,7 +25,7 @@ export default function page() {
       const data = response.data;
       console.log(data);
 
-      router.push("/login");
+      setShowSuccess(true);
     } catch (error: any) {
       console.log("sign up failed", error);
       toast.error(error.message);
@@ -46,50 +47,59 @@ export default function page() {
   }, [user]);
 
   return (
-    <div className="flex flex-col items-center justify-center py-2 min-h-screen">
-      <h1>Sign Up</h1>
+    <div>
       {loading && <h3 className="text-white text-center">Loading...</h3>}
       <br />
       <hr />
 
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        value={user.name}
-        onChange={(e) => setUser({ ...user, name: e.target.value })}
-        placeholder="name"
-        className="text-black w-[300px] p-3 rounded-full font-poppins"
-      />
-      <label htmlFor="name">Email</label>
-      <input
-        type="email"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="email"
-        className="text-black w-[300px] p-3 rounded-full font-poppins"
-      />
-      <label htmlFor="name">Password</label>
-      <input
-        type="password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder="enter password"
-        className="text-black w-[300px] p-3 rounded-full font-poppins"
-      />
-      <br />
-      <br />
-      <div className="mt-4">
-        <button
-          className="bg-white text-black rounded-full py-3 px-3 cursor-pointer"
-          onClick={onSignUp}
-    
-        >
-          Sign Up
-        </button>
-      </div>
-      <div>
-        <Link href="/login">Already have an account? Login</Link>
-      </div>
+      {showSuccess ? (
+        <div>
+          <h2 className="p-5 text-yellow m-2 font-poppins">
+            Please Check your Email for verification!
+          </h2>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-2 min-h-screen">
+          <h1>Sign Up</h1>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            value={user.name}
+            onChange={(e) => setUser({ ...user, name: e.target.value })}
+            placeholder="name"
+            className="text-black w-[300px] p-3 rounded-full font-poppins"
+          />
+          <label htmlFor="name">Email</label>
+          <input
+            type="email"
+            value={user.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            placeholder="email"
+            className="text-black w-[300px] p-3 rounded-full font-poppins"
+          />
+          <label htmlFor="name">Password</label>
+          <input
+            type="password"
+            value={user.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+            placeholder="enter password"
+            className="text-black w-[300px] p-3 rounded-full font-poppins"
+          />
+          <br />
+          <br />
+          <div className="mt-4">
+            <button
+              className="bg-white text-black rounded-full py-3 px-3 cursor-pointer"
+              onClick={onSignUp}
+            >
+              Sign Up
+            </button>
+          </div>
+          <div>
+            <Link href="/login">Already have an account? Login</Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
