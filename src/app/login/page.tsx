@@ -24,7 +24,7 @@ export default function page() {
       router.push("/profile");
     } catch (error: any) {
       console.log("Login Failed", error);
-      toast.error(error.message);
+      toast.error(error.response.data.error);
     } finally {
       setLoading(false);
     }
@@ -65,6 +65,11 @@ export default function page() {
       </div>
       <div>
         <Link href="/signup">Not yet created an account? Sign Up</Link>
+      </div>
+      <div>
+        <Link href="/passwordEmail"> 
+          Forgot Password ? Click reset Password
+        </Link>
       </div>
     </div>
   );

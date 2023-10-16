@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-
+import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -19,15 +19,17 @@ export default function verifyEmail() {
   const sendToken = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/verifyEmail", { token });   
+      const response = await axios.post("/api/users/verifyEmail", { token });
       //  console.log(response.data);
       setError(false);
       setLoading(false);
       setIsVerified(true);
+      toast.success("Account verified successfully!")
     } catch (error: any) {
       setError(true);
       console.log("error while verifying email", error);
       setLoading(false);
+      toast.error("Something went wrong")
     }
   };
 

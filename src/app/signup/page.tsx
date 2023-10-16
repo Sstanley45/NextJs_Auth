@@ -23,7 +23,7 @@ export default function page() {
       e.preventDefault();
       const response = await axios.post("/api/users/signup", user);
       const data = response.data;
-      console.log(data);
+    //console.log(data);
 
       setShowSuccess(true);
     } catch (error: any) {

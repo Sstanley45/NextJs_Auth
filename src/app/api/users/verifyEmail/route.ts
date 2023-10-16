@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { token } = reqBody;
-    console.log(token);
+   //console.log(token);
 
     //find user based on token..
     const user = await User.findOne({
